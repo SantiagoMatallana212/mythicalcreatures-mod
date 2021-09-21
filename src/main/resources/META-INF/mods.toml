@@ -1,0 +1,20 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+
+[[mods]]
+    modId="mythicalcreatures"
+    version="1.16.5-1.0.0"
+    displayName="Mythical Creatures"
+    logoFile="pack_icon.png"
+    credits=""
+    authors="Made by @kesamasi"
+    description='''
+    Port from Minecraft Bedrock Add-on.
+    '''
+[[dependencies.mythicalcreatures]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="AFTER"
+    side="BOTH"
