@@ -27,7 +27,8 @@ public class MCEntityRegistry {
     public static final DeferredRegister<EntityType<?>> ENTITY_DEFERRED = DeferredRegister.create(ForgeRegistries.ENTITIES, MythicalCreatures.MOD_ID);
     private static final List<Item> SPAWN_EGGS = Lists.newArrayList();
 
-    public static final RegistryObject<EntityType<EntityOrc>> ORC = createEntity("orc", EntityOrc::new, 1.2F, 2.5F, 0x000000, 0xFFFFFF);
+    public static final RegistryObject<EntityType<EntityOrc>> ORC = createEntity("orc", EntityOrc::new, 1.2F, 2.7F, 0x8fd422, 0x3d270a);
+    public static final RegistryObject<EntityType<EntityBoar>> BOAR = createEntity("boar", EntityBoar::new, 1.2F, 1.75F, 0x28140d, 0x07080b);
 
     private static <T extends AnimalEntity> RegistryObject<EntityType<T>> createEntity(String name, EntityType.IFactory<T> factory, float width, float height, int eggPrimary, int eggSecondary) {
         ResourceLocation location = new ResourceLocation(MythicalCreatures.MOD_ID, name);
@@ -46,6 +47,7 @@ public class MCEntityRegistry {
     @SubscribeEvent
     public static void addEntityAttributes(EntityAttributeCreationEvent event) {
         event.put(ORC.get(), EntityOrc.bakeAttributes().build());
+        event.put(BOAR.get(), EntityBoar.bakeAttributes().build());
     }
 
     @SubscribeEvent
