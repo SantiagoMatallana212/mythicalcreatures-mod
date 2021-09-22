@@ -28,7 +28,7 @@ public class MCEntityRegistry {
     public static final DeferredRegister<EntityType<?>> ENTITY_DEFERRED = DeferredRegister.create(ForgeRegistries.ENTITIES, MythicalCreatures.MOD_ID);
     private static final List<Item> SPAWN_EGGS = Lists.newArrayList();
 
-    public static final RegistryObject<EntityType<EntityOrc>> ORC = createEntity("orc", EntityOrc::new, 1.2F, 2.7F, 0x8fd422, 0x3d270a);
+    public static final RegistryObject<EntityType<EntityOrc>> ORC = createMonster("orc", EntityOrc::new, 1.2F, 2.7F, 0x8fd422, 0x3d270a);
     public static final RegistryObject<EntityType<EntityBoar>> BOAR = createEntity("boar", EntityBoar::new, 1.2F, 1.75F, 0x28140d, 0x07080b);
     public static final RegistryObject<EntityType<EntityMinotaur>> MINOTAUR = createMonster("minotaur", EntityMinotaur::new, 1.0F, 2.0F, 0x974100, 0x3F290D);
 

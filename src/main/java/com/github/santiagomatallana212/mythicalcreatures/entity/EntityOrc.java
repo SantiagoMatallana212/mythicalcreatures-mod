@@ -7,7 +7,6 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.SnowGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,14 +15,14 @@ import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 
-public class EntityOrc extends AnimalEntity {
+public class EntityOrc extends MonsterEntity {
 
     protected EntityOrc(EntityType entityType, World world) {
         super(entityType, world);
     }
 
     public static AttributeModifierMap.MutableAttribute bakeAttributes() {
-        return AnimalEntity.createMobAttributes()
+        return MonsterEntity.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 40D)
                 .add(Attributes.FOLLOW_RANGE, 64D)
                 .add(Attributes.ATTACK_DAMAGE, 10D)
@@ -43,11 +42,5 @@ public class EntityOrc extends AnimalEntity {
         this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 0.6D));
         this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-    }
-
-    @Nullable
-    @Override
-    public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-        return null;
     }
 }

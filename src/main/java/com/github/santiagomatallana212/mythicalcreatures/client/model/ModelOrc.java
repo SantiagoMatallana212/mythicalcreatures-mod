@@ -2,10 +2,12 @@ package com.github.santiagomatallana212.mythicalcreatures.client.model;
 
 import com.github.santiagomatallana212.mythicalcreatures.entity.EntityOrc;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.client.renderer.entity.model.AgeableModel;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
-public class ModelOrc<T extends EntityOrc> extends AgeableModel<T> {
+public class ModelOrc<T extends EntityOrc> extends EntityModel<T> {
     private final ModelRenderer body;
     private final ModelRenderer head;
     private final ModelRenderer rightEar;
@@ -89,22 +91,13 @@ public class ModelOrc<T extends EntityOrc> extends AgeableModel<T> {
     }
 
     @Override
-    protected Iterable<ModelRenderer> headParts() {
-        return ImmutableList.of(this.head);
-    }
-
-    @Override
-    protected Iterable<ModelRenderer> bodyParts() {
-        return ImmutableList.of(this.body);
+    public void renderToBuffer(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+        this.body.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
     }
 
     private void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.xRot = x;
         modelRenderer.yRot = y;
         modelRenderer.zRot = z;
-    }
-    private void setTextureOffset(ModelRenderer modelRenderer, float x, float y) {
-        modelRenderer.xRot = x;
-        modelRenderer.yRot = y;
     }
 }
