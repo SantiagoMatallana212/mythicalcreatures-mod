@@ -30,7 +30,7 @@ public class MCEntityRegistry {
 
     public static final RegistryObject<EntityType<EntityOrc>> ORC = createMonster("orc", EntityOrc::new, 1.2F, 2.7F, 0x8fd422, 0x3d270a);
     public static final RegistryObject<EntityType<EntityBoar>> BOAR = createEntity("boar", EntityBoar::new, 1.2F, 1.75F, 0x28140d, 0x07080b);
-    public static final RegistryObject<EntityType<EntityMinotaur>> MINOTAUR = createMonster("minotaur", EntityMinotaur::new, 1.0F, 2.0F, 0x974100, 0x3F290D);
+    public static final RegistryObject<EntityType<EntityMinotaur>> MINOTAUR = createMonster("minotaur", EntityMinotaur::new, 2.0F, 4.0F, 0x974100, 0x3F290D);
 
     private static <T extends AnimalEntity> RegistryObject<EntityType<T>> createEntity(String name, EntityType.IFactory<T> factory, float width, float height, int eggPrimary, int eggSecondary) {
         ResourceLocation location = new ResourceLocation(MythicalCreatures.MOD_ID, name);
