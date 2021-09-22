@@ -1,0 +1,11 @@
+{
+  "entities": "Entity",
+  "entity.mythicalcreatures.orc": "Orc",
+  "entity.mythicalcreatures.boar": "Boar",
+  "entity.mythicalcreatures.minotaur": "Minotaur",
+
+  "spawn_eggs": "Spawn Eggs",
+  "item.mythicalcreatures.orc_spawn_egg": "Orc Spawn Egg",
+  "item.mythicalcreatures.boar_spawn_egg": "Boar Spawn Egg",
+  "item.mythicalcreatures.minotaur_spawn_egg": "Minotaur Spawn Egg"
+}
