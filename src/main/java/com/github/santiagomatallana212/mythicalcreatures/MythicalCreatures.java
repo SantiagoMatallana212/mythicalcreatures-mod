@@ -1,6 +1,7 @@
 package com.github.santiagomatallana212.mythicalcreatures;
 
 import com.github.santiagomatallana212.mythicalcreatures.client.renderer.RenderBoar;
+import com.github.santiagomatallana212.mythicalcreatures.client.renderer.RenderCentaur;
 import com.github.santiagomatallana212.mythicalcreatures.client.renderer.RenderMinotaur;
 import com.github.santiagomatallana212.mythicalcreatures.client.renderer.RenderOrc;
 import com.github.santiagomatallana212.mythicalcreatures.config.ConfigHandler;
@@ -35,6 +36,7 @@ public class MythicalCreatures {
         RenderingRegistry.registerEntityRenderingHandler(MCEntityRegistry.ORC.get(), RenderOrc::new);
         RenderingRegistry.registerEntityRenderingHandler(MCEntityRegistry.BOAR.get(), RenderBoar::new);
         RenderingRegistry.registerEntityRenderingHandler(MCEntityRegistry.MINOTAUR.get(), RenderMinotaur::new);
+        RenderingRegistry.registerEntityRenderingHandler(MCEntityRegistry.CENTAUR.get(), RenderCentaur::new);
     }
 
     public static void registerDeferredRegistries(IEventBus modBus) {

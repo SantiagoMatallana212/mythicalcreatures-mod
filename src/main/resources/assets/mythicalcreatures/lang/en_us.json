@@ -3,9 +3,11 @@
   "entity.mythicalcreatures.orc": "Orc",
   "entity.mythicalcreatures.boar": "Boar",
   "entity.mythicalcreatures.minotaur": "Minotaur",
+  "entity.mythicalcreatures.centaur": "Centaur",
 
   "spawn_eggs": "Spawn Eggs",
   "item.mythicalcreatures.orc_spawn_egg": "Orc Spawn Egg",
   "item.mythicalcreatures.boar_spawn_egg": "Boar Spawn Egg",
-  "item.mythicalcreatures.minotaur_spawn_egg": "Minotaur Spawn Egg"
+  "item.mythicalcreatures.minotaur_spawn_egg": "Minotaur Spawn Egg",
+  "item.mythicalcreatures.centaur_spawn_egg": "Centaur Spawn Egg"
 }
