@@ -1,14 +1,10 @@
 package com.github.santiagomatallana212.mythicalcreatures;
 
-import com.github.santiagomatallana212.mythicalcreatures.client.renderer.RenderBoar;
-import com.github.santiagomatallana212.mythicalcreatures.client.renderer.RenderCentaur;
-import com.github.santiagomatallana212.mythicalcreatures.client.renderer.RenderMinotaur;
-import com.github.santiagomatallana212.mythicalcreatures.client.renderer.RenderOrc;
+import com.github.santiagomatallana212.mythicalcreatures.client.ClientHandler;
 import com.github.santiagomatallana212.mythicalcreatures.config.ConfigHandler;
 import com.github.santiagomatallana212.mythicalcreatures.entity.MCEntityRegistry;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -33,10 +29,7 @@ public class MythicalCreatures {
     }
 
     private void setupClient(final FMLClientSetupEvent event) {
-        RenderingRegistry.registerEntityRenderingHandler(MCEntityRegistry.ORC.get(), RenderOrc::new);
-        RenderingRegistry.registerEntityRenderingHandler(MCEntityRegistry.BOAR.get(), RenderBoar::new);
-        RenderingRegistry.registerEntityRenderingHandler(MCEntityRegistry.MINOTAUR.get(), RenderMinotaur::new);
-        RenderingRegistry.registerEntityRenderingHandler(MCEntityRegistry.CENTAUR.get(), RenderCentaur::new);
+        ClientHandler.init();
     }
 
     public static void registerDeferredRegistries(IEventBus modBus) {

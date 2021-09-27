@@ -1,24 +1,28 @@
 package com.github.santiagomatallana212.mythicalcreatures.entity;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.passive.SnowGolemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.world.World;
+import com.github.alexthe666.citadel.animation.Animation;
+import com.github.alexthe666.citadel.animation.IAnimatedEntity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.animal.SnowGolem;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.npc.AbstractVillager;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 
-public class EntityMinotaur extends MonsterEntity {
+public class EntityMinotaur extends Monster implements IAnimatedEntity {
 
-    protected EntityMinotaur(EntityType entityType, World world) {
+    protected EntityMinotaur(EntityType entityType, Level world) {
         super(entityType, world);
     }
 
-    public static AttributeModifierMap.MutableAttribute bakeAttributes() {
-        return MonsterEntity.createMonsterAttributes()
+    public static AttributeSupplier.Builder bakeAttributes() {
+        return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 300D)
                 .add(Attributes.FOLLOW_RANGE, 128D)
                 .add(Attributes.ATTACK_DAMAGE, 25D)
@@ -28,16 +32,41 @@ public class EntityMinotaur extends MonsterEntity {
 
     public void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-        this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, true));
-        this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
-        this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, SnowGolemEntity.class, true));
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
+        this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
+        this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, SnowGolem.class, true));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
         this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.9D, 32F));
         this.goalSelector.addGoal(2, new HurtByTargetGoal(this));
-        this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6F));
-        this.goalSelector.addGoal(10, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6F));
+        this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
+    }
+
+    @Override
+    public int getAnimationTick() {
+        return 0;
+    }
+
+    @Override
+    public void setAnimationTick(int i) {
+
+    }
+
+    @Override
+    public Animation getAnimation() {
+        return null;
+    }
+
+    @Override
+    public void setAnimation(Animation animation) {
+
+    }
+
+    @Override
+    public Animation[] getAnimations() {
+        return new Animation[0];
     }
 }
