@@ -2,6 +2,7 @@ package com.github.santiagomatallana212.mythicalcreatures.entity;
 
 import com.github.alexthe666.citadel.animation.Animation;
 import com.github.alexthe666.citadel.animation.IAnimatedEntity;
+import com.github.santiagomatallana212.mythicalcreatures.entity.ai.BoarAIRaidCrops;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -16,6 +17,7 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
@@ -43,10 +45,15 @@ public class EntityBoar extends Animal implements IAnimatedEntity {
         this.goalSelector.addGoal(3, (new HurtByTargetGoal(this).setAlertOthers()));
         this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.5D, true));
         this.goalSelector.addGoal(5, new TemptGoal(this, 1.2D, TEMPT_ITEMS, false));
+        this.goalSelector.addGoal(5, new BoarAIRaidCrops(this));
         this.goalSelector.addGoal(6, new FollowParentGoal(this, 1.0D));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(9, new RandomLookAroundGoal(this));
+    }
+
+    public boolean isFood(ItemStack item) {
+        return TEMPT_ITEMS.test(item);
     }
 
     protected SoundEvent getAmbientSound() {

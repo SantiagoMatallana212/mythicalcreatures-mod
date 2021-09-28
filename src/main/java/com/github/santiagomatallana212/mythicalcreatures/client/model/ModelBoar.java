@@ -10,6 +10,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
 public class ModelBoar extends AdvancedEntityModel<EntityBoar> {
+
     private final AdvancedModelBox root;
     private final AdvancedModelBox head;
     private final AdvancedModelBox jowl;
@@ -230,6 +231,32 @@ public class ModelBoar extends AdvancedEntityModel<EntityBoar> {
     public void setupAnim(EntityBoar entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.resetToDefaultPose();
         animate(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+
+        if (this.young) {
+            this.root.setShouldScaleChildren(true);
+            this.root.setScale(0.5F, 0.5F, 0.5F);
+        }else {
+            this.root.setScale(1, 1, 1);
+        }
+
+        this.head.rotateAngleX += headPitch * ((float)Math.PI / 180F);
+        this.head.rotateAngleY += netHeadYaw * ((float)Math.PI / 180F);
+
+        //limbSwing = entityIn.tickCount;
+        //limbSwingAmount = 0.5F;
+
+        float walkSpeed = 1;
+        float walkDegree = 1;
+
+        bob(root, 1 * walkSpeed, 0.5F * walkDegree, false, limbSwing, limbSwingAmount);
+        walk(rightBackLeg, 0.5F * walkSpeed, 0.5F * walkDegree, false, 0, 0, limbSwing, limbSwingAmount);
+        walk(leftBackLeg, 0.5F * walkSpeed, 0.5F * walkDegree, true, 0, 0, limbSwing, limbSwingAmount);
+        walk(rightFrontLeg, 0.5F * walkSpeed, 0.5F * walkDegree, true, 0, 0, limbSwing, limbSwingAmount);
+        walk(leftFrontLeg, 0.5F * walkSpeed, 0.5F * walkDegree, false, 0, 0, limbSwing, limbSwingAmount);
+        walk(rightFrontLegLower, 0.5F * walkSpeed, 0.5F * walkDegree, true, 0, 0, limbSwing, limbSwingAmount);
+        walk(leftFrontLegLower, 0.5F * walkSpeed, 0.5F * walkDegree, false, 0, 0, limbSwing, limbSwingAmount);
+        flap(tailLower, 0.5F * walkSpeed, 0.25F * walkDegree, false, 0, 0, limbSwing, limbSwingAmount);
+        flap(tail, 0.5F * walkSpeed, 0.25F * walkDegree, false, 0, 0, limbSwing, limbSwingAmount);
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4) {

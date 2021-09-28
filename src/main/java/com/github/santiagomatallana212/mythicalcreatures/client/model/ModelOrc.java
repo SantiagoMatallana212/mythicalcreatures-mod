@@ -6,8 +6,6 @@ import com.github.alexthe666.citadel.client.model.AdvancedModelBox;
 import com.github.alexthe666.citadel.client.model.basic.BasicModelPart;
 import com.github.santiagomatallana212.mythicalcreatures.entity.EntityOrc;
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 
 public class ModelOrc extends AdvancedEntityModel<EntityOrc> {
     private final AdvancedModelBox body;
@@ -93,6 +91,20 @@ public class ModelOrc extends AdvancedEntityModel<EntityOrc> {
     public void setupAnim(EntityOrc entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.resetToDefaultPose();
         animate(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+
+        this.head.rotateAngleX += headPitch * ((float)Math.PI / 180F);
+        this.head.rotateAngleY += netHeadYaw * ((float)Math.PI / 180F);
+
+        //limbSwing = entityIn.tickCount;
+        //limbSwingAmount = 0.5F;
+
+        float walkSpeed = 1;
+        float walkDegree = 1;
+        
+        walk(rightArm, 0.5F * walkSpeed, 1 * walkDegree, false, 0, 0, limbSwing, limbSwingAmount);
+        walk(leftArm, 0.5F * walkSpeed, 1 * walkDegree, true, 0, 0, limbSwing, limbSwingAmount);
+        walk(rightLeg, 0.5F * walkSpeed, 1 * walkDegree, true, 0, 0, limbSwing, limbSwingAmount);
+        walk(leftLeg, 0.5F * walkSpeed, 1 * walkDegree, false, 0, 0, limbSwing, limbSwingAmount);
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4) {
