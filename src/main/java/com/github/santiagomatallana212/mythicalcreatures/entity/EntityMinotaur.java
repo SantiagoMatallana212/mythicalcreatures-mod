@@ -2,6 +2,7 @@ package com.github.santiagomatallana212.mythicalcreatures.entity;
 
 import com.github.alexthe666.citadel.animation.Animation;
 import com.github.alexthe666.citadel.animation.IAnimatedEntity;
+import com.github.santiagomatallana212.mythicalcreatures.entity.util.IVillagerFear;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -15,7 +16,7 @@ import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
-public class EntityMinotaur extends Monster implements IAnimatedEntity {
+public class EntityMinotaur extends Monster implements IAnimatedEntity, IVillagerFear {
 
     protected EntityMinotaur(EntityType entityType, Level world) {
         super(entityType, world);

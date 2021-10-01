@@ -2,13 +2,13 @@ package com.github.santiagomatallana212.mythicalcreatures.entity.ai;
 
 import com.github.santiagomatallana212.mythicalcreatures.entity.EntityBoar;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.animal.Rabbit;
+import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class BoarAIRaidCrops extends BoarAIMoveToBlock {
+public class BoarAIRaidCrops extends MoveToBlockGoal {
     private final EntityBoar boar;
     private boolean wantsToRaid;
     private boolean canRaid;

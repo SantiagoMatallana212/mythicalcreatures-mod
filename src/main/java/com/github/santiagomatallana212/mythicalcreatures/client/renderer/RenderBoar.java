@@ -1,6 +1,5 @@
 package com.github.santiagomatallana212.mythicalcreatures.client.renderer;
 
-import com.github.santiagomatallana212.mythicalcreatures.client.ClientHandler;
 import com.github.santiagomatallana212.mythicalcreatures.client.model.ModelBoar;
 import com.github.santiagomatallana212.mythicalcreatures.entity.EntityBoar;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

@@ -4,7 +4,7 @@ license="All rights reserved"
 
 [[mods]]
     modId="mythicalcreatures"
-    version="1.16.5-1.0.0"
+    version="1.17.1-1.0.0"
     displayName="Mythical Creatures"
     logoFile="pack_icon.png"
     credits=""

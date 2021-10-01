@@ -2,15 +2,16 @@ package com.github.santiagomatallana212.mythicalcreatures.entity;
 
 import com.github.alexthe666.citadel.animation.Animation;
 import com.github.alexthe666.citadel.animation.IAnimatedEntity;
+import com.github.santiagomatallana212.mythicalcreatures.config.MCConfig;
 import com.github.santiagomatallana212.mythicalcreatures.entity.ai.BoarAIRaidCrops;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -21,7 +22,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+
+import javax.annotation.Nullable;
 
 public class EntityBoar extends Animal implements IAnimatedEntity {
     private static final Ingredient TEMPT_ITEMS = Ingredient.of(Items.CARROT, Items.POTATO, Items.BEETROOT);
@@ -56,6 +61,18 @@ public class EntityBoar extends Animal implements IAnimatedEntity {
         return TEMPT_ITEMS.test(item);
     }
 
+    public boolean checkSpawnRules(LevelAccessor worldIn, MobSpawnType spawnReasonIn) {
+        return MCEntityRegistry.rollSpawn(MCConfig.boarSpawnRolls, this.getRandom(), spawnReasonIn);
+    }
+
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+        if (spawnDataIn == null) {
+            spawnDataIn = new AgeableMob.AgeableMobGroupData(1.0F);
+        }
+
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+    }
+
     protected SoundEvent getAmbientSound() {
         return SoundEvents.PIG_AMBIENT;
     }
@@ -73,7 +90,7 @@ public class EntityBoar extends Animal implements IAnimatedEntity {
     }
 
     public EntityBoar getBreedOffspring(ServerLevel level, AgeableMob ageableMob) {
-        return MCEntityRegistry.BOAR.get().create(level);
+        return MCEntityRegistry.BOAR.create(level);
     }
 
     @Override

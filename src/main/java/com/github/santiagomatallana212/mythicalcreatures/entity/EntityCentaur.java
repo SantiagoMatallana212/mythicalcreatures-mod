@@ -2,6 +2,7 @@ package com.github.santiagomatallana212.mythicalcreatures.entity;
 
 import com.github.alexthe666.citadel.animation.Animation;
 import com.github.alexthe666.citadel.animation.IAnimatedEntity;
+import com.github.santiagomatallana212.mythicalcreatures.config.MCConfig;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -32,6 +33,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 
 import javax.annotation.Nullable;
@@ -76,6 +78,10 @@ public class EntityCentaur extends PathfinderMob implements RangedAttackMob, IAn
     public void readAdditionalSaveData(CompoundTag compoundTag) {
         super.readAdditionalSaveData(compoundTag);
         this.setTypeVariant(compoundTag.getInt("Variant"));
+    }
+
+    public boolean checkSpawnRules(LevelAccessor worldIn, MobSpawnType spawnReasonIn) {
+        return MCEntityRegistry.rollSpawn(MCConfig.centaurSpawnRolls, this.getRandom(), spawnReasonIn);
     }
 
     private void setTypeVariant(int p_234242_1_) {
