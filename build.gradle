@@ -121,8 +121,8 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 dependencies {
     minecraft 'net.minecraftforge:forge:1.17.1-37.0.65'
     annotationProcessor 'org.spongepowered:mixin:0.8.3:processor'
-    compileOnly "curse.maven:citadel2-331936:3468089"
-    runtimeOnly "curse.maven:citadel2-331936:3468089"
+    compileOnly "curse.maven:citadel2-331936:3478179" //3478179
+    runtimeOnly "curse.maven:citadel2-331936:3478179"
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
@@ -131,7 +131,7 @@ jar {
         attributes([
                 "Specification-Title": "mythicalcreatures",
                 "Specification-Vendor": "santiagomatallana212",
-                "Specification-Version": "1.11.0", // We are version 1 of ourselves
+                "Specification-Version": "1.0.0", // We are version 1 of ourselves
                 "Implementation-Title": project.name,
                 "Implementation-Version": "${version}",
                 "Implementation-Vendor" :"santiagomatallana212",
