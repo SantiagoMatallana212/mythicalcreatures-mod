@@ -25,6 +25,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 
 import javax.annotation.Nullable;
 
@@ -33,6 +34,8 @@ public class EntityBoar extends Animal implements IAnimatedEntity {
 
     protected EntityBoar(EntityType entityType, Level world) {
         super(entityType, world);
+        this.setPathfindingMalus(BlockPathTypes.DANGER_OTHER, 0.0F);
+        this.setPathfindingMalus(BlockPathTypes.DANGER_OTHER, 0.0F);
     }
 
     public static AttributeSupplier.Builder bakeAttributes() {

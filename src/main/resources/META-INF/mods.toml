@@ -1,20 +1,25 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[39,)"
 license="All rights reserved"
-
 [[mods]]
-    modId="mythicalcreatures"
-    version="1.17.1-1.0.0"
-    displayName="Mythical Creatures"
-    logoFile="pack_icon.png"
-    credits=""
-    authors="Made by @kesamasi"
-    description='''
-    Port from Minecraft Bedrock Add-on.
-    '''
+modId="mythicalcreatures"
+version="1.18.1-1.0.0"
+displayName="Mythical Creatures"
+logoFile="pack_icon.png"
+credits="Created by @kesamasi"
+authors="SantiagoMatallana212"
+description='''
+Port from the Minecraft Bedrock Add-on
+'''
+[[dependencies.mythicalcreatures]]
+modId="citadel"
+mandatory=true
+versionRange="[1.10.5,)"
+ordering="AFTER"
+side="BOTH"
 [[dependencies.mythicalcreatures]]
     modId="forge"
     mandatory=true
-    versionRange="[36,)"
-    ordering="AFTER"
+    versionRange="[39,)"
+    ordering="NONE"
     side="BOTH"
